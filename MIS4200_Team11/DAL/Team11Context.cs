@@ -12,5 +12,7 @@ namespace MIS4200_Team11.DAL
         {
 
         }
+
+        public System.Data.Entity.DbSet<ProfileModels> ProfileModels { get; set; }
     }
 }
