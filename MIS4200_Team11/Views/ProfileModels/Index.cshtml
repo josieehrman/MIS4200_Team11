@@ -4,42 +4,48 @@
     ViewBag.Title = "Your Profile";
 }
 
-<h2>Your Profile</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create", new { area = "" }, new { @class = "btn btn-primary" })
-</p>
+<h2>Employee Profile List</h2>
+<br />
+<form class="form-inline" action="/action_page.php">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+    <button class="btn btn-success" type="submit">Search</button>
+</form>
+<br />
+<br />
 <table class="table table-bordered">
-        <tr>
+        <th>
             <h3>
                 @Html.DisplayNameFor(model => model.firstName)
             </h3>
-        </tr>
-        <tr>
+        </th>
+        <th>
             <h3>
                 @Html.DisplayNameFor(model => model.lastName)
             </h3>
-        </tr>
-        <tr>
+        </th>
+        <th>
             <h3>
                 @Html.DisplayNameFor(model => model.email)
             </h3>
-        </tr>
-        <tr>
+        </th>
+        <th>
             <h3>
                 @Html.DisplayNameFor(model => model.busUnit)
             </h3>
-        </tr>
-        <tr>
+        </th>
+        <th>
             <h3>
                 @Html.DisplayNameFor(model => model.hireDate)
             </h3>
-        </tr>
-        <tr>
+        </th>
+        <th>
             <h3>
                 @Html.DisplayNameFor(model => model.title)
             </h3>
-        </tr>
+        </th>
+        <thead>
+
+        </thead>
 
 @foreach (var item in Model) {
     <tr>
