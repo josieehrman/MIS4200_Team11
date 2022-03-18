@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace MIS4200_Team11.Controllers
 {
+    [Authorize]
     public class ProfileModelsController : Controller
     {
         private Team11Context db = new Team11Context();
