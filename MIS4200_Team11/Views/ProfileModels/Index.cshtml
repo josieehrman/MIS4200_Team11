@@ -6,10 +6,18 @@
 
 <h2>Employee Profile List</h2>
 <br />
-<form class="form-inline" action="/action_page.php">
+@*<form class="form-inline" action="/action_page.php">
     <input class="form-control mr-sm-2" type="text" placeholder="Search">
     <button class="btn btn-success" type="submit">Search</button>
-</form>
+</form>*@
+@using (Html.BeginForm("Index", "profileModels", FormMethod.Get))
+            {
+                <p>
+                    Find by Name: @Html.TextBox("searchString")
+                    <input type="submit" value="Search" />
+                </p>
+            }
+
 <br />
 <br />
 <table class="table table-bordered">
