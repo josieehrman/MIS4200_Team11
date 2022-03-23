@@ -41,6 +41,7 @@ namespace MIS4200_Team11.Controllers
         public ActionResult Create()
         {
             ViewBag.cvID = new SelectList(db.CoreValues, "cvID", "coreValue");
+            ViewBag.ID = new SelectList(db.ProfileModels, "ID", "fullName");
             return View();
         }
 

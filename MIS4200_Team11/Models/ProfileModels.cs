@@ -36,6 +36,13 @@ public class ProfileModels
         [Display(Name = "Title")]
         [Required]
         public string title { get; set; }
+        public string fullName
+        {
+            get
+            {
+            return lastName + ", " + firstName;
+            } 
+        }
    
 }
 
