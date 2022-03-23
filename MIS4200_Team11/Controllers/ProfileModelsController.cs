@@ -93,6 +93,7 @@ namespace MIS4200_Team11.Controllers
         }
 
         // GET: ProfileModels/Edit/5
+        [Authorize]
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -124,6 +125,7 @@ namespace MIS4200_Team11.Controllers
         }
 
         // GET: ProfileModels/Delete/5
+        [Authorize]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
