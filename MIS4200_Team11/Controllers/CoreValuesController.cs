@@ -39,7 +39,10 @@ namespace MIS4200_Team11.Controllers
         // GET: CoreValues/Create
         public ActionResult Create()
         {
+            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "fullName");
+            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "fullName");
             return View();
+
         }
 
         // POST: CoreValues/Create
@@ -55,7 +58,8 @@ namespace MIS4200_Team11.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "fullName");
+            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "fullName");
             return View(coreValues);
         }
 

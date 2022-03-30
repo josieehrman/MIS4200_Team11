@@ -17,6 +17,5 @@ namespace MIS4200_Team11.DAL
 
         public System.Data.Entity.DbSet<MIS4200_Team11.Models.CoreValues> CoreValues { get; set; }
 
-        public System.Data.Entity.DbSet<MIS4200_Team11.Models.Recognize> Recognizes { get; set; }
     }
 }
