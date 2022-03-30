@@ -248,21 +248,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\ProfileModels\Create.cshtml" />
-    <Content Include="Views\ProfileModels\Delete.cshtml" />
-    <Content Include="Views\ProfileModels\Details.cshtml" />
-    <Content Include="Views\ProfileModels\Edit.cshtml" />
-    <Content Include="Views\ProfileModels\Index.cshtml" />
-    <Content Include="Views\CoreValues\Create.cshtml" />
-    <Content Include="Views\CoreValues\Delete.cshtml" />
-    <Content Include="Views\CoreValues\Details.cshtml" />
-    <Content Include="Views\CoreValues\Edit.cshtml" />
-    <Content Include="Views\CoreValues\Index.cshtml" />
     <Content Include="Views\Recognizes\Create.cshtml" />
     <Content Include="Views\Recognizes\Delete.cshtml" />
     <Content Include="Views\Recognizes\Details.cshtml" />
     <Content Include="Views\Recognizes\Edit.cshtml" />
     <Content Include="Views\Recognizes\Index.cshtml" />
+    <Content Include="Views\CoreValues\Create.cshtml" />
+    <Content Include="Views\CoreValues\Delete.cshtml" />
+    <Content Include="Views\CoreValues\Details.cshtml" />
+    <Content Include="Views\CoreValues\Edit.cshtml" />
+    <Content Include="Views\CoreValues\Index.cshtml" />
+    <Content Include="Views\ProfileModels\Create.cshtml" />
+    <Content Include="Views\ProfileModels\Delete.cshtml" />
+    <Content Include="Views\ProfileModels\Details.cshtml" />
+    <Content Include="Views\ProfileModels\Edit.cshtml" />
+    <Content Include="Views\ProfileModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

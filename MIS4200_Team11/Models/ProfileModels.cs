@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using MIS4200_Team11.Models;
 
 /// <summary>
 /// Summary description for Class1
@@ -33,6 +35,8 @@ public class ProfileModels
         [DataType(DataType.Date)]
         [Required]
         public DateTime hireDate { get; set; }
+        
+        public int cvID { get; set; }
         [Display(Name = "Title")]
         [Required]
         public string title { get; set; }
@@ -43,7 +47,9 @@ public class ProfileModels
             return lastName + ", " + firstName;
             } 
         }
-   
+        public ICollection<CoreValues> CoreValues { get; set; }
+        
+
 }
 
 

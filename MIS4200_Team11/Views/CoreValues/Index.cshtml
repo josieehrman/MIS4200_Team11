@@ -12,7 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.coreValue)
+            @Html.DisplayNameFor(model => model.award)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recognizor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recognized)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recognizationDate)
         </th>
         <th></th>
     </tr>
@@ -20,7 +29,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.coreValue)
+            @Html.DisplayFor(modelItem => item.award)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recognizor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recognized)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recognizationDate)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.cvID }) |

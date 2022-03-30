@@ -1,59 +1,39 @@
 ﻿@model IEnumerable<ProfileModels>
 
 @{
-    ViewBag.Title = "Your Profile";
+    ViewBag.Title = "Index";
 }
 
-<h2>Employee Profile List</h2>
-<br />
-@*<form class="form-inline" action="/action_page.php">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-    <button class="btn btn-success" type="submit">Search</button>
-</form>*@
-@using (Html.BeginForm("Index", "profileModels", FormMethod.Get))
-            {
-                <p>
-                    Find by Name: @Html.TextBox("searchString")
-                    <input type="submit" value="Search" />
-                </p>
-            }
+<h2>Index</h2>
 
-<br />
-<br />
-<table class="table table-bordered">
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
         <th>
-            <h3>
-                @Html.DisplayNameFor(model => model.firstName)
-            </h3>
+            @Html.DisplayNameFor(model => model.firstName)
         </th>
         <th>
-            <h3>
-                @Html.DisplayNameFor(model => model.lastName)
-            </h3>
+            @Html.DisplayNameFor(model => model.lastName)
         </th>
         <th>
-            <h3>
-                @Html.DisplayNameFor(model => model.email)
-            </h3>
+            @Html.DisplayNameFor(model => model.email)
         </th>
         <th>
-            <h3>
-                @Html.DisplayNameFor(model => model.busUnit)
-            </h3>
+            @Html.DisplayNameFor(model => model.busUnit)
         </th>
         <th>
-            <h3>
-                @Html.DisplayNameFor(model => model.hireDate)
-            </h3>
+            @Html.DisplayNameFor(model => model.hireDate)
         </th>
         <th>
-            <h3>
-                @Html.DisplayNameFor(model => model.title)
-            </h3>
+            @Html.DisplayNameFor(model => model.cvID)
         </th>
-        <thead>
-
-        </thead>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th></th>
+    </tr>
 
 @foreach (var item in Model) {
     <tr>
@@ -71,6 +51,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.hireDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cvID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.title)
