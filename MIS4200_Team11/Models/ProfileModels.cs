@@ -36,7 +36,7 @@ public class ProfileModels
         [Required]
         public DateTime hireDate { get; set; }
         
-        public int cvID { get; set; }
+        
         [Display(Name = "Title")]
         [Required]
         public string title { get; set; }

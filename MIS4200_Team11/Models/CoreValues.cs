@@ -26,6 +26,6 @@ namespace MIS4200_Team11.Models
             Innovate = 4,
             Balance = 5
         }
-        public virtual ProfileModels ProfileModels { get; set; }
+        public ProfileModels profilemodels { get; set; }
     }
 }

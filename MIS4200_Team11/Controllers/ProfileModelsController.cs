@@ -15,12 +15,14 @@ namespace MIS4200_Team11.Controllers
         private Team11Context db = new Team11Context();
 
         // GET: ProfileModels
+        
         public ActionResult Index()
         {
             return View(db.ProfileModels.ToList());
         }
 
         // GET: ProfileModels/Details/5
+        [Authorize]
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace MIS4200_Team11.Controllers
         }
 
         // GET: ProfileModels/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -46,7 +49,7 @@ namespace MIS4200_Team11.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,firstName,lastName,email,busUnit,hireDate,cvID,title")] ProfileModels profileModels)
+        public ActionResult Create([Bind(Include = "ID,firstName,lastName,email,busUnit,hireDate,title")] ProfileModels profileModels)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +63,7 @@ namespace MIS4200_Team11.Controllers
         }
 
         // GET: ProfileModels/Edit/5
+        [Authorize]
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -79,7 +83,7 @@ namespace MIS4200_Team11.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,firstName,lastName,email,busUnit,hireDate,cvID,title")] ProfileModels profileModels)
+        public ActionResult Edit([Bind(Include = "ID,firstName,lastName,email,busUnit,hireDate,title")] ProfileModels profileModels)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +95,7 @@ namespace MIS4200_Team11.Controllers
         }
 
         // GET: ProfileModels/Delete/5
+        [Authorize]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
