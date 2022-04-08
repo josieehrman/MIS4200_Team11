@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MIS4200_Team11.Models
 {
@@ -26,6 +27,9 @@ namespace MIS4200_Team11.Models
             Innovate = 4,
             Balance = 5
         }
-        public ProfileModels profilemodels { get; set; }
+        [ForeignKey("recognizor")]
+        public ProfileModels personGivingRecognition { get; set; }
+        [ForeignKey("recognized")]
+        public ProfileModels personGettingRecognition { get; set; }
     }
 }

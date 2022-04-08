@@ -174,10 +174,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CoreValuesController.cs" />
+    <Compile Include="Controllers\OldCoreValuesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProfileModelsController.cs" />
+    <Compile Include="Controllers\OldProfileModelsController.cs" />
     <Compile Include="DAL\Team11Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -246,16 +246,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\CoreValues\Create.cshtml" />
-    <Content Include="Views\CoreValues\Delete.cshtml" />
-    <Content Include="Views\CoreValues\Details.cshtml" />
-    <Content Include="Views\CoreValues\Edit.cshtml" />
-    <Content Include="Views\CoreValues\Index.cshtml" />
-    <Content Include="Views\ProfileModels\Create.cshtml" />
-    <Content Include="Views\ProfileModels\Delete.cshtml" />
-    <Content Include="Views\ProfileModels\Details.cshtml" />
-    <Content Include="Views\ProfileModels\Edit.cshtml" />
-    <Content Include="Views\ProfileModels\Index.cshtml" />
+    <Content Include="Views\OldCoreValues\Create.cshtml" />
+    <Content Include="Views\OldCoreValues\Delete.cshtml" />
+    <Content Include="Views\OldCoreValues\Details.cshtml" />
+    <Content Include="Views\OldCoreValues\Edit.cshtml" />
+    <Content Include="Views\OldCoreValues\Index.cshtml" />
+    <Content Include="Views\OldProfileModels\Create.cshtml" />
+    <Content Include="Views\OldProfileModels\Delete.cshtml" />
+    <Content Include="Views\OldProfileModels\Details.cshtml" />
+    <Content Include="Views\OldProfileModels\Edit.cshtml" />
+    <Content Include="Views\OldProfileModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

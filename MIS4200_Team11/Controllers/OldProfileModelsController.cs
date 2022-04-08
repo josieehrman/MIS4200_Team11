@@ -8,114 +8,121 @@ using System.Web;
 using System.Web.Mvc;
 using MIS4200_Team11.DAL;
 using MIS4200_Team11.Models;
+using Microsoft.AspNet.Identity;
 
 namespace MIS4200_Team11.Controllers
 {
-    public class CoreValuesController : Controller
+    public class ProfileModelsController : Controller
     {
         private Team11Context db = new Team11Context();
 
-        // GET: CoreValues
+        // GET: ProfileModels
+        
         public ActionResult Index()
         {
-            return View(db.CoreValues.ToList());
+            return View(db.ProfileModels.ToList());
         }
 
-        // GET: CoreValues/Details/5
-        public ActionResult Details(int? id)
+        // GET: ProfileModels/Details/5
+        [Authorize]
+        public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoreValues coreValues = db.CoreValues.Find(id);
-            if (coreValues == null)
+            ProfileModels profileModels = db.ProfileModels.Find(id);
+            if (profileModels == null)
             {
                 return HttpNotFound();
             }
-            return View(coreValues);
+            return View(profileModels);
         }
 
-        // GET: CoreValues/Create
+        // GET: ProfileModels/Create
+        [Authorize]
         public ActionResult Create()
         {
-            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "fullName");
-            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "fullName");
             return View();
-
         }
 
-        // POST: CoreValues/Create
+        // POST: ProfileModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "cvID,award,recognizor,recognized,recognizationDate")] CoreValues coreValues)
+        public ActionResult Create([Bind(Include = "ID,firstName,lastName,email,busUnit,hireDate,title")] ProfileModels profileModels)
         {
             if (ModelState.IsValid)
             {
-                db.CoreValues.Add(coreValues);
+                //profileModels.ID = Guid.NewGuid();
+                Guid newuser;
+                Guid.TryParse(User.Identity.GetUserId(), out newuser);
+                profileModels.ID = newuser;
+
+                db.ProfileModels.Add(profileModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "fullName");
-            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "fullName");
-            return View(coreValues);
+
+            return View(profileModels);
         }
 
-        // GET: CoreValues/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: ProfileModels/Edit/5
+        [Authorize]
+        public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoreValues coreValues = db.CoreValues.Find(id);
-            if (coreValues == null)
+            ProfileModels profileModels = db.ProfileModels.Find(id);
+            if (profileModels == null)
             {
                 return HttpNotFound();
             }
-            return View(coreValues);
+            return View(profileModels);
         }
 
-        // POST: CoreValues/Edit/5
+        // POST: ProfileModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "cvID,award,recognizor,recognized,recognizationDate")] CoreValues coreValues)
+        public ActionResult Edit([Bind(Include = "ID,firstName,lastName,email,busUnit,hireDate,title")] ProfileModels profileModels)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(coreValues).State = EntityState.Modified;
+                db.Entry(profileModels).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(coreValues);
+            return View(profileModels);
         }
 
-        // GET: CoreValues/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: ProfileModels/Delete/5
+        [Authorize]
+        public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CoreValues coreValues = db.CoreValues.Find(id);
-            if (coreValues == null)
+            ProfileModels profileModels = db.ProfileModels.Find(id);
+            if (profileModels == null)
             {
                 return HttpNotFound();
             }
-            return View(coreValues);
+            return View(profileModels);
         }
 
-        // POST: CoreValues/Delete/5
+        // POST: ProfileModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
-            CoreValues coreValues = db.CoreValues.Find(id);
-            db.CoreValues.Remove(coreValues);
+            ProfileModels profileModels = db.ProfileModels.Find(id);
+            db.ProfileModels.Remove(profileModels);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
