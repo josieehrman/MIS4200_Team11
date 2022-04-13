@@ -19,7 +19,8 @@ namespace MIS4200_Team11.Controllers
         // GET: CoreValues
         public ActionResult Index()
         {
-            return View(db.CoreValues.ToList());
+            var coreValues = db.CoreValues.Include(c => c.personGettingRecognition).Include(c => c.personGivingRecognition);
+            return View(coreValues.ToList());
         }
 
         // GET: CoreValues/Details/5
@@ -40,10 +41,9 @@ namespace MIS4200_Team11.Controllers
         // GET: CoreValues/Create
         public ActionResult Create()
         {
-            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "fullName");
-            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "fullName");
+            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "firstName");
+            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "firstName");
             return View();
-
         }
 
         // POST: CoreValues/Create
@@ -63,8 +63,9 @@ namespace MIS4200_Team11.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "fullName");
-            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "fullName");
+
+            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognized);
+            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognizor);
             return View(coreValues);
         }
 
@@ -80,6 +81,8 @@ namespace MIS4200_Team11.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognized);
+            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognizor);
             return View(coreValues);
         }
 
@@ -96,6 +99,8 @@ namespace MIS4200_Team11.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognized);
+            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognizor);
             return View(coreValues);
         }
 
