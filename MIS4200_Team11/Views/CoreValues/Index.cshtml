@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.recognizor)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.personGivingRecognition.fullName)
+            @Html.DisplayNameFor(model => model.recognized)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.award)
@@ -23,22 +23,28 @@
         <th>
             @Html.DisplayNameFor(model => model.recognizationDate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descriptionOfRecognition)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.personGettingRecognition.fullName)
+            @Html.DisplayFor(modelItem => item.personGivingRecognition.fullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.personGivingRecognition.firstName)
+            @Html.DisplayFor(modelItem => item.personGettingRecognition.fullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.award)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.recognizationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descriptionOfRecognition)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.cvID }) |

@@ -27,6 +27,7 @@ namespace MIS4200_Team11.Models
             Innovate = 4,
             Balance = 5
         }
+        public string descriptionOfRecognition { get; set; }
         [ForeignKey("recognizor")]
         public ProfileModels personGivingRecognition { get; set; }
         [ForeignKey("recognized")]
