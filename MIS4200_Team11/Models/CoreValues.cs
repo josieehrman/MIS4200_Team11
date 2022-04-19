@@ -25,7 +25,10 @@ namespace MIS4200_Team11.Models
             Integrity = 2,
             Stewardship = 3,
             Innovate = 4,
-            Balance = 5
+            Balance = 5,
+            Culture = 6,
+            Passion = 7
+
         }
         public string descriptionOfRecognition { get; set; }
         [ForeignKey("recognizor")]

@@ -36,6 +36,13 @@ namespace MIS4200_Team11.Controllers
             {
                 return HttpNotFound();
             }
+            //create list of all reccommendations for an employee
+            var rec = db.CoreValues.Where(r => r.recognized == id);
+
+            var totalCnt = rec.Count();
+            ViewBag.totalCnt = totalCnt;
+            //end of count function
+
             return View(profileModels);
         }
 

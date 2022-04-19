@@ -17,6 +17,7 @@ namespace MIS4200_Team11.Controllers
         private Team11Context db = new Team11Context();
 
         // GET: CoreValues
+        [Authorize]
         public ActionResult Index()
         {
             var coreValues = db.CoreValues.Include(c => c.personGettingRecognition).Include(c => c.personGivingRecognition);
@@ -39,6 +40,7 @@ namespace MIS4200_Team11.Controllers
         }
 
         // GET: CoreValues/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "firstName");
@@ -70,7 +72,8 @@ namespace MIS4200_Team11.Controllers
         }
 
         // GET: CoreValues/Edit/5
-        public ActionResult Edit(int? id)
+        [Authorize]
+        public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
@@ -80,6 +83,16 @@ namespace MIS4200_Team11.Controllers
             if (coreValues == null)
             {
                 return HttpNotFound();
+            }
+            Guid recognizor;
+            Guid.TryParse(User.Identity.GetUserId(), out recognizor);
+            if (recognizor == id)
+            {
+                return View(coreValues);
+            }
+            else
+            {
+                return View("Index","CoreValues");
             }
             ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognized);
             ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognizor);
@@ -105,6 +118,7 @@ namespace MIS4200_Team11.Controllers
         }
 
         // GET: CoreValues/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
