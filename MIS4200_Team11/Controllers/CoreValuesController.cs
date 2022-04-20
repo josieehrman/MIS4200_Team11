@@ -73,7 +73,7 @@ namespace MIS4200_Team11.Controllers
 
         // GET: CoreValues/Edit/5
         [Authorize]
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -86,13 +86,13 @@ namespace MIS4200_Team11.Controllers
             }
             Guid recognizor;
             Guid.TryParse(User.Identity.GetUserId(), out recognizor);
-            if (recognizor == id)
+            if (coreValues.recognizor == recognizor)
             {
                 return View(coreValues);
             }
             else
             {
-                return View("Index","CoreValues");
+                return View("notAuthorized");
             }
             ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognized);
             ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognizor);
