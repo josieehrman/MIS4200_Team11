@@ -20,7 +20,7 @@ namespace MIS4200_Team11.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var coreValues = db.CoreValues.Include(c => c.personGettingRecognition).Include(c => c.personGivingRecognition);
+            var coreValues = db.CoreValues.Include(c => c.personGettingRecognition).Include(c => c.personGivingRecognition).OrderByDescending(c => c.recognizationDate).Take(5);
             return View(coreValues.ToList());
         }
 
@@ -87,16 +87,16 @@ namespace MIS4200_Team11.Controllers
             Guid recognizor;
             Guid.TryParse(User.Identity.GetUserId(), out recognizor);
             if (coreValues.recognizor == recognizor)
-            {
+            { 
+                ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognized);
+                ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognizor);
                 return View(coreValues);
             }
             else
             {
                 return View("notAuthorized");
             }
-            ViewBag.recognized = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognized);
-            ViewBag.recognizor = new SelectList(db.ProfileModels, "ID", "firstName", coreValues.recognizor);
-            return View(coreValues);
+           
         }
 
         // POST: CoreValues/Edit/5
