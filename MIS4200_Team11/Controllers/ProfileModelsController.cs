@@ -88,7 +88,16 @@ namespace MIS4200_Team11.Controllers
             {
                 return HttpNotFound();
             }
-            return View(profileModels);
+            Guid ID;
+            Guid.TryParse(User.Identity.GetUserId(), out ID);
+            if (profileModels.ID == ID)
+            {
+                return View(profileModels);
+            }
+            else
+            {
+                return View("noAuthorization");
+            }
         }
 
         // POST: ProfileModels/Edit/5
@@ -120,7 +129,16 @@ namespace MIS4200_Team11.Controllers
             {
                 return HttpNotFound();
             }
-            return View(profileModels);
+            Guid ID;
+            Guid.TryParse(User.Identity.GetUserId(), out ID);
+            if (profileModels.ID == ID)
+            {
+                return View(profileModels);
+            }
+            else
+            {
+                return View("noAuthorization");
+            }
         }
 
         // POST: ProfileModels/Delete/5

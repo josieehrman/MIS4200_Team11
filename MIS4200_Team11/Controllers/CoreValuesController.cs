@@ -130,7 +130,16 @@ namespace MIS4200_Team11.Controllers
             {
                 return HttpNotFound();
             }
-            return View(coreValues);
+            Guid recognizor;
+            Guid.TryParse(User.Identity.GetUserId(), out recognizor);
+            if (coreValues.recognizor == recognizor)
+            {
+                return View(coreValues);
+            }
+            else
+            {
+                return View("notAuthorized");
+            }
         }
 
         // POST: CoreValues/Delete/5
