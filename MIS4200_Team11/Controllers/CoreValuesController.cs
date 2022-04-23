@@ -13,12 +13,13 @@ using PagedList;
 
 namespace MIS4200_Team11.Controllers
 {
+    
     public class CoreValuesController : Controller
     {
         private Team11Context db = new Team11Context();
 
         // GET: CoreValues
-        
+        [Authorize]
 
         public ActionResult Index(string currentFilter, string searchString, int? page)
         {
