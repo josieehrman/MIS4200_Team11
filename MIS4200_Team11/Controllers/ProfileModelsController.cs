@@ -9,20 +9,45 @@ using System.Web.Mvc;
 using MIS4200_Team11.DAL;
 using MIS4200_Team11.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace MIS4200_Team11.Controllers
 {
+    
     public class ProfileModelsController : Controller
     {
         private Team11Context db = new Team11Context();
 
         // GET: ProfileModels
-        
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString)
         {
-            return View(db.ProfileModels.ToList());
-        }
+            int pgSize = 10;
+            int pageNumber = (page ?? 1);
+            var profile = from r in db.ProfileModels select r;
+            
+            //Sort records
+            profile = db.ProfileModels.OrderBy(r => r.lastName).ThenBy(r => r.firstName);;
+            //check to see if a search was requested
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                string[] profileNames;
+                profileNames = searchString.Split(' ');
+                if (profileNames.Count() == 1)
+                {
+                    profile = profile.Where(r => r.lastName.Contains(searchString) || r.firstName.Contains(searchString));
+                }
+                else
+                {
+                    string r1 = profileNames[0];
+                    string r2 = profileNames[1];
+                    profile = profile.Where(r => r.firstName.Contains(r1) && r.lastName.Contains(r2));
+                }
+            }
+            var profileList = profile.ToPagedList(pageNumber, pgSize);
 
+            return View(profileList);
+
+        }
         // GET: ProfileModels/Details/5
         [Authorize]
         public ActionResult Details(Guid? id)

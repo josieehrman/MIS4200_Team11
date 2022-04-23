@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using MIS4200_Team11.DAL;
 using MIS4200_Team11.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace MIS4200_Team11.Controllers
 {
@@ -17,11 +18,35 @@ namespace MIS4200_Team11.Controllers
         private Team11Context db = new Team11Context();
 
         // GET: CoreValues
-        [Authorize]
-        public ActionResult Index()
+        
+
+        public ActionResult Index(string currentFilter, string searchString, int? page)
         {
-            var coreValues = db.CoreValues.Include(c => c.personGettingRecognition).Include(c => c.personGivingRecognition).OrderByDescending(c => c.recognizationDate).Take(5);
-            return View(coreValues.ToList());
+            //var coreValues = db.CoreValues.Include(c => c.personGettingRecognition).Include(c => c.personGivingRecognition).OrderByDescending(c => c.recognizationDate).Take(5);
+            // return View(coreValues.ToList());
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
+
+            var vals = from v in db.CoreValues.Include(c => c.personGettingRecognition).Include(c => c.personGivingRecognition).OrderByDescending(c => c.recognizationDate).Take(5) select v;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                vals = vals.Where(v => v.personGettingRecognition.fullName.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            return View(vals.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: CoreValues/Details/5

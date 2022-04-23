@@ -1,10 +1,21 @@
-﻿@model IEnumerable<MIS4200_Team11.Models.CoreValues>
+﻿@model PagedList.IPagedList<MIS4200_Team11.Models.CoreValues>
+@using MIS4200_Team11.DAL;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Core Values</h2>
+<form class="form-inline" action="/action_page.php">
+</form>
+@using (Html.BeginForm("Index", "CoreValues", FormMethod.Get))
+{
+    <p>
+        Find by recognized employee: @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,46 +23,50 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.recognizor)
+            Recognizer
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.recognized)
+            Recognized
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.award)
+            Award
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.recognizationDate)
+            RecongizationDate
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descriptionOfRecognition)
+           Description of Recognition
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.personGivingRecognition.fullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.personGettingRecognition.fullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.award)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.recognizationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descriptionOfRecognition)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.cvID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.cvID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.cvID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.personGivingRecognition.fullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.personGettingRecognition.fullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.award)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recognizationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descriptionOfRecognition)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.cvID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.cvID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.cvID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
